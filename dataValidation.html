@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Data Validation</title>
+    <style>
+        .bottum-space {
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .Header {
+            font-family: sans-serif;
+
+        }
+
+        input {
+            height: 20px;
+        }
+
+        button {
+            width: 170px;
+            padding: 5px;
+            color: rgba(71, 75, 24, 0.726);
+        }
+
+        .main-box {
+            width: 100vw;
+            height: 100vh;
+            background: rgba(214, 235, 156, 0.801);
+            justify-content: center;
+            display: flex;
+
+        }
+
+        .inner-box {
+            border: 1px solid black;
+            width: fit-content;
+            background: rgba(138, 144, 48, 0.726);
+            align-self: center;
+            padding: 30px;
+            color: white;
+            box-shadow: rgb(56, 55, 55);
+
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-box">
+        <div class="inner-box">
+            <b class="Header">New User Registration</b>
+            <div class="bottum-space"> <label for="">Username</label><br>
+                <input id="userName" type="text" placeholder="Enter User Name">
+            </div>
+            <div class="bottum-space"> <label for="">Email</label><br>
+                <input id="email" type="text" placeholder="Enter Email ">
+            </div>
+            <div class="bottum-space"> <label for="">Password</label><br>
+                <input id="password" type="text" placeholder="Enter Password">
+            </div>
+            <div class="bottum-space"> <label for="">Confirm Password</label><br>
+                <input id="cpassword" type="text" placeholder="Enter Password Again">
+            </div>
+            <button onclick="submit()">SUBMIT</button>
+        </div>
+    </div>
+</body>
+<script>
+
+
+    function submit() {
+        let Username = document.getElementById("userName").value;
+        let Email = document.getElementById("email").value;
+        let Password = document.getElementById("password").value;
+        let CPassword = document.getElementById("cpassword").value;
+        let letters = /^[A-Za-z]+$/;
+        if (Username == null || Username == "" || !Username.match(letters))
+            alert("Invalid First Name");
+        let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (Email == null || Email == "" || !Email.match(mailformat)) {
+            alert("Invalid E-mail");
+        }
+        /*let passwordformat = /^(?=.\d)(?=.[a-z])(?=.*[A-Z]).{6,10}$/;
+        if(Password == null || Password == "" || !Password.match(passwordformat)) {
+        alert("Invalid Password");
+        return false;      
+        }*/
+
+        if (!CPassword.match(Password)) {
+            alert("Password not matching");
+        }
+        else {
+            alert("Registration succesfull");
+        }
+    }
+
+</script>
+
+</html>
