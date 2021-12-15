@@ -8,7 +8,15 @@
             margin-bottom: 10px;
             margin-top: 10px;
         }
-
+        .error{
+           color: red;
+           font-size: small;
+          
+        }
+  .succesfull{
+           color:green;
+           font-size: small;
+        }
         .Header {
             font-family: sans-serif;
 
@@ -21,7 +29,8 @@
         button {
             width: 170px;
             padding: 5px;
-            color: rgba(71, 75, 24, 0.726);
+            color: white;
+            background-color: rgb(101, 123, 129);
         }
 
         .main-box {
@@ -35,12 +44,13 @@
 
         .inner-box {
             border: 1px solid black;
-            width: fit-content;
+            width:fit-content;
             background: rgba(138, 144, 48, 0.726);
             align-self: center;
-            padding: 30px;
+            padding: 50px;
             color: white;
             box-shadow: rgb(56, 55, 55);
+            border-radius: 20px;
 
 
         }
@@ -53,17 +63,21 @@
             <b class="Header">New User Registration</b>
             <div class="bottum-space"> <label for="">Username</label><br>
                 <input id="userName" type="text" placeholder="Enter User Name">
+                <p class="error" id="nameerror"></p>
             </div>
             <div class="bottum-space"> <label for="">Email</label><br>
                 <input id="email" type="text" placeholder="Enter Email ">
+                <p class="error" id="emailerror"></p>
             </div>
             <div class="bottum-space"> <label for="">Password</label><br>
                 <input id="password" type="text" placeholder="Enter Password">
             </div>
             <div class="bottum-space"> <label for="">Confirm Password</label><br>
                 <input id="cpassword" type="text" placeholder="Enter Password Again">
+                <p class="error" id="passworderror"></p>
             </div>
             <button onclick="submit()">SUBMIT</button>
+            <p class="succesfull" id="done"></p>
         </div>
     </div>
 </body>
@@ -76,23 +90,30 @@
         let Password = document.getElementById("password").value;
         let CPassword = document.getElementById("cpassword").value;
         let letters = /^[A-Za-z]+$/;
-        if (Username == null || Username == "" || !Username.match(letters))
-            alert("Invalid First Name");
+        if (Username == null || Username == "" || !Username.match(letters)) {
+            document.getElementById("nameerror").innerText="Invalid Username"
+            return false ;
+        }
         let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         if (Email == null || Email == "" || !Email.match(mailformat)) {
-            alert("Invalid E-mail");
+            document.getElementById("emailerror").innerText="Invalid Email"
+            return false ;
         }
         /*let passwordformat = /^(?=.\d)(?=.[a-z])(?=.*[A-Z]).{6,10}$/;
         if(Password == null || Password == "" || !Password.match(passwordformat)) {
         alert("Invalid Password");
         return false;      
         }*/
-
-        if (!CPassword.match(Password)) {
-            alert("Password not matching");
+        if(Password == null || Password == "") {
+            document.getElementById("passworderror").innerText="Invalid password"
+        return false; 
+         }
+        if (!CPassword.match(Password)||!Password.match(CPassword)) {
+            document.getElementById("passworderror").innerText="Password Not Matching"
+           return false ; 
         }
         else {
-            alert("Registration succesfull");
+            document.getElementById("done").innerText="Registration Succesfully Done"  
         }
     }
 
